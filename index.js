@@ -3,6 +3,8 @@ const app = express()
 const cors = require('cors')
 require('dotenv').config()
 
+const PORT = process.env.PORT ?? 3000
+
 app.use(cors())
 app.use(express.static('public'))
 app.get('/', (req, res) => {
@@ -13,6 +15,6 @@ app.get('/', (req, res) => {
 
 
 
-const listener = app.listen(process.env.PORT || 3000, () => {
+const listener = app.listen(PORT, () => {
   console.log('Your app is listening on port ' + listener.address().port)
 })
