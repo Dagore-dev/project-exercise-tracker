@@ -5,12 +5,14 @@
 	"main": "index.js",
 	"scripts": {
 		"dev": "nodemon index.js",
-    "start": "node index.js"
+		"start": "node index.js"
 	},
 	"dependencies": {
 		"cors": "^2.8.5",
 		"dotenv": "^8.2.0",
-		"express": "^4.16.4"
+		"express": "^4.16.4",
+		"mongodb": "^4.8.1",
+		"mongoose": "^6.5.1"
 	},
 	"repository": {
 		"url": "https://github.com/Dagore-dev/project-exercise-tracker.git"

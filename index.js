@@ -4,6 +4,7 @@ const app = express()
 const cors = require('cors')
 const usersRouter = require('./routes/usersRouter')
 require('dotenv').config()
+require('./database/connection')
 
 const PORT = process.env.PORT ?? 3000
 
