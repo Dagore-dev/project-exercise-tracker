@@ -15,6 +15,12 @@ const exerciseSchema = new Schema({
   }
 })
 
+exerciseSchema.set('toJSON', {
+  transform: (document, obj) => {
+    delete obj.__v
+  }
+})
+
 const Exercise = model('Exercise', exerciseSchema)
 
 module.exports = Exercise

@@ -1,10 +1,16 @@
-const { Schema, model } = require('mongoose')
+const { Schema, model, Types } = require('mongoose')
 
 const userSchema = new Schema({
   username: {
     type: String,
     required: true
-  }
+  },
+  log: [
+    {
+      type: Types.ObjectId,
+      ref: 'Exercise'
+    }
+  ]
 })
 
 userSchema.set('toJSON', {
