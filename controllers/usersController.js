@@ -17,8 +17,15 @@ async function getAllUsers (request, response) {
  * @param {express.Request} request
  * @param {express.Response} response
  */
-function createNewUser (request, response) {
-  console.error('Not implemented')
+async function createNewUser (request, response) {
+  const { username } = request.body
+  const { ok, data } = await UserServices.createNewUser(username)
+
+  if (ok) {
+    response.json(data)
+  } else {
+    response.status(500).json(data)
+  }
 }
 
 /**

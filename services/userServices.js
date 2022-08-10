@@ -10,6 +10,19 @@ async function getAllUsersWithoutLogs () {
   return users
 }
 
+async function createNewUser (username) {
+  const newUser = new User({ username })
+
+  try {
+    const savedUser = (await newUser.save()).toObject()
+    return { ok: true, data: savedUser }
+  } catch (e) {
+    console.error(e.message)
+    return { ok: false, data: e.message }
+  }
+}
+
 module.exports = {
-  getAllUsersWithoutLogs
+  getAllUsersWithoutLogs,
+  createNewUser
 }

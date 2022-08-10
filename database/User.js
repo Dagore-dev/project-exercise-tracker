@@ -19,6 +19,13 @@ userSchema.set('toJSON', {
   }
 })
 
+userSchema.set('toObject', {
+  transform: (document, obj) => {
+    delete obj.__v
+    delete obj.log
+  }
+})
+
 const User = model('User', userSchema)
 
 module.exports = User
