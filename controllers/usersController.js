@@ -1,12 +1,15 @@
 // eslint-disable-next-line
 const express = require('express')
+const UserServices = require('../services/userServices')
 /**
  * You can make a `GET` request to `~/api/users` to get a list of all users. This request response with an array of objects with `username` and `_id` properties.
  * @param {express.Request} request
  * @param {express.Response} response
  */
-function getAllUsers (request, response) {
-  console.error('Not implemented')
+async function getAllUsers (request, response) {
+  const users = await UserServices.getAllUsersWithoutLogs()
+
+  response.json({ users })
 }
 
 /**
