@@ -1,4 +1,4 @@
-const { Schema, model } = require('mongoose')
+const { Schema, model, Types } = require('mongoose')
 
 const exerciseSchema = new Schema({
   description: {
@@ -12,12 +12,17 @@ const exerciseSchema = new Schema({
   date: {
     type: String,
     required: true
+  },
+  userId: {
+    type: Types.ObjectId,
+    required: true
   }
 })
 
 exerciseSchema.set('toJSON', {
   transform: (document, obj) => {
     delete obj.__v
+    delete obj.userId
   }
 })
 

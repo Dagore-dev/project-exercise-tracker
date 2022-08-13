@@ -33,8 +33,16 @@ async function createNewUser (request, response) {
  * @param {express.Request} request
  * @param {express.Response} response
  */
-function updateUserExercises (request, response) {
-  console.error('Not implemented')
+async function postUserExercise (request, response) {
+  const { _id } = request.params
+  const { description, duration, date } = request.body
+  const { ok, data } = await UserServices.postNewUserExercise(_id, description, duration, date)
+
+  if (ok) {
+    response.json(data)
+  } else {
+    response.status(400).json({ message: data })
+  }
 }
 
 /**
@@ -49,6 +57,6 @@ function getExercisesFromUser (request, response) {
 module.exports = {
   getAllUsers,
   createNewUser,
-  updateUserExercises,
+  postUserExercise,
   getExercisesFromUser
 }

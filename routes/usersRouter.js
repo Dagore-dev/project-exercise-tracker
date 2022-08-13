@@ -6,7 +6,7 @@ const UsersController = require('../controllers/usersController')
 router
   .get('/', UsersController.getAllUsers)
   .post('/', UsersController.createNewUser)
-  .post('/:_id/exercises', UsersController.updateUserExercises)
+  .post('/:_id/exercises', UsersController.postUserExercise)
   .get('/:_id/logs', UsersController.getExercisesFromUser)
 
 module.exports = router
