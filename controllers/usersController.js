@@ -50,8 +50,15 @@ async function postUserExercise (request, response) {
  * @param {express.Request} request
  * @param {express.Response} response
  */
-function getExercisesFromUser (request, response) {
-  console.error('Not implemented')
+async function getExercisesFromUser (request, response) {
+  const { _id } = request.params
+  const { ok, data } = await UserServices.getUserByIdWithLog(_id)
+
+  if (ok) {
+    response.json(data)
+  } else {
+    response.status(400).json(data)
+  }
 }
 
 module.exports = {
