@@ -53,7 +53,7 @@ async function postNewUserExercise (userId, description, duration, date) {
   return { ok: false, data: `Error: User found: ${ok}. Date valid: ${dateIsValid}` }
 }
 
-async function getUserByIdWithLog (userId) {
+async function getUserByIdWithLog (userId, options) {
   const { ok, data } = await getUserById(userId)
 
   if (!ok) {
@@ -63,6 +63,9 @@ async function getUserByIdWithLog (userId) {
   try {
     const log = await Exercise
       .find({ userId })
+      .where('date').gte(options.from)
+      .where('date').lte(options.to)
+      .limit(options.limit ?? 1000)
       .select({ userId: 0, _id: 0 })
       .exec()
 

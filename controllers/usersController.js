@@ -52,7 +52,8 @@ async function postUserExercise (request, response) {
  */
 async function getExercisesFromUser (request, response) {
   const { _id } = request.params
-  const { ok, data } = await UserServices.getUserByIdWithLog(_id)
+  const { from, to, limit } = request.query
+  const { ok, data } = await UserServices.getUserByIdWithLog(_id, { from, to, limit })
 
   if (ok) {
     response.json(data)
