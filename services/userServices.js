@@ -38,12 +38,12 @@ async function postNewUserExercise (userId, description, duration, date) {
   const { dateIsValid, dateObj } = isValidDate(date)
 
   if (ok && dateIsValid) {
-    const newExercise = new Exercise({ description, duration, date: dateObj.toDateString(), userId })
+    const newExercise = new Exercise({ description, duration: Number(duration), date: dateObj.toDateString(), userId })
 
     try {
       await newExercise.save()
 
-      return { ok: true, data: { _id: userId, username: data.username, description, duration, date: dateObj.toDateString() } }
+      return { ok: true, data: { _id: userId, username: data.username, description, duration: Number(duration), date: dateObj.toDateString() } }
     } catch (e) {
       console.error(e.message)
       return { ok: false, data: e.message }
@@ -66,7 +66,7 @@ async function getUserByIdWithLog (userId) {
       .select({ userId: 0, _id: 0 })
       .exec()
 
-    return { ok: true, data: { ...data, log } }
+    return { ok: true, data: { ...data, log, count: log.length } }
   } catch (e) {
     console.log(e.message)
     return { ok: false, data: e.message }

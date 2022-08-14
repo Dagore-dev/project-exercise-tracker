@@ -9,7 +9,7 @@ const UserServices = require('../services/userServices')
 async function getAllUsers (request, response) {
   const users = await UserServices.getAllUsersWithoutLogs()
 
-  response.json({ ...users })
+  response.json(users)
 }
 
 /**
