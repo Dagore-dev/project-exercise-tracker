@@ -61,14 +61,14 @@ async function getUserByIdWithLog (userId, options) {
   }
 
   try {
-    const log = await Exercise
+    const logQuery = await Exercise
       .find({ userId })
-      .where('date').gte(options.from)
-      .where('date').lte(options.to)
       .limit(options.limit ?? 1000)
       .select({ userId: 0, _id: 0 })
       .exec()
 
+    const log = logQuery.map(({ description, duration, date }) => { return { description, duration, date: new Date(date).toDateString() } })
+    
     return { ok: true, data: { ...data, log, count: log.length } }
   } catch (e) {
     console.log(e.message)
